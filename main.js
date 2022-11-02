@@ -71,12 +71,12 @@ app.post(`${giftcardUri}/authorize`, (req, res) => {
     const expected_params = ["gift_card_code", "amount", "sales_order_id"]
     const parametersErrors = errorsOfBodyParams(expected_params, body)
     if(parametersErrors){
-        return res.status(400).json({"error": parametersErrors})
+        return res.status(400).json({"error": {"message": parametersErrors}})
     }
     const code = body["gift_card_code"]
     const amount = body["amount"]
     if( amount <= 0){
-        return res.status(400).json({"error": "Invalid authorize amount."})
+        return res.status(400).json({"error": {"message": "Invalid authorize amount."}})
     }
     if (invalidCodes[code]) {
         return res.status(400).json({"error": {"message": invalidCodes[code]}})
@@ -90,12 +90,12 @@ app.post(`${giftcardUri}/capture`, (req, res) => {
     const expected_params = ["amount", "payment_id", "sales_order_id", "gift_card_code"]
     const parametersErrors = errorsOfBodyParams(expected_params, body)
     if(parametersErrors){
-        return res.status(400).json({"error": parametersErrors})
+        return res.status(400).json({"error": {"message": parametersErrors}})
     }
     const code = body["gift_card_code"]
     const amount = body["amount"]
     if( amount <= 0){
-        return res.status(400).json({"error": "Invalid capture amount."})
+        return res.status(400).json({"error": {"message": "Invalid capture amount."}})
     }
     if (invalidCodes[code]) {
         return res.status(400).json({"error": {"message": invalidCodes[code]}})
@@ -109,12 +109,12 @@ app.post(`${giftcardUri}/refund`, (req, res) => {
     const expected_params = ["gift_card_code", "amount", "sales_order_id", "payment_id"]
     const parametersErrors = errorsOfBodyParams(expected_params, body)
     if(parametersErrors){
-        return res.status(400).json({"error": parametersErrors})
+        return res.status(400).json({"error": {"message": parametersErrors}})
     }
     const code = body["gift_card_code"]
     const amount = body["amount"]
     if( amount <= 0){
-        return res.status(400).json({"error": "Invalid refund amount."})
+        return res.status(400).json({"error": {"message": "Invalid refund amount."}})
     }
     if (invalidCodes[code]) {
         return res.status(400).json({"error": {"message": invalidCodes[code]}})
