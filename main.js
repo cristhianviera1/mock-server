@@ -27,16 +27,16 @@ app.get('/api/health', (req, res) => {
 })
 
 const invalidCodes = {
-    '819wash': "The promo code has already been used",
-    'FOWPV6YF3': "The promo code has already been used",
-    'FOWP5Q2XU': "The promo code has already been used",
-    'FOWP9Y68C': "The promo code has expired",
-    'huntxo': "The promo code has expired",
-    'improv': "The promo code has expired",
+    '819wash': "The gift card has already been used",
+    'FOWPV6YF3': "The gift card has already been used",
+    'FOWP5Q2XU': "The gift card has already been used",
+    'FOWP9Y68C': "The gift card has expired",
+    'huntxo': "The gift card has expired",
+    'improv': "The gift card has expired",
     'ACR41JA': "Unable to use ACR41JA gift card for your transaction",
     'ACR41JB': "Unable to use ACR41JA gift card for your transaction",
     'ACR41JC': "Unable to use ACR41JA gift card for your transaction",
-    'PRLJ7T2DR': "The promo code only applies to @warbyparker.com clients",
+    'PRLJ7T2DR': "The gift card only applies to @warbyparker.com clients",
     'PRJDASCA': "Cannot refund for more than"
 }
 
