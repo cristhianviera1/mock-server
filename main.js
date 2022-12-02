@@ -37,7 +37,9 @@ const invalidCodes = {
     'ACR41JB': "Unable to use ACR41JA gift card for your transaction",
     'ACR41JC': "Unable to use ACR41JA gift card for your transaction",
     'PRLJ7T2DR': "The gift card only applies to @warbyparker.com clients",
-    'PRJDASCA': "Cannot refund for more than"
+    'PRJDASCV1': "Cannot void PRJDASCV1 gift card. Already voided",
+    'PRJDASCV2': "Cannot void PRJDASCV2 gift card. Already captured",
+    'PRJDASCV3': "Unable to use PRJDASCV3 gift card for you transaction"
 }
 
 const errorsOfBodyParams = (expected_params, body_params) => {
@@ -116,6 +118,21 @@ app.post(`${giftcardUri}/refund`, (req, res) => {
     if( amount <= 0){
         return res.status(400).json({"error": {"message": "Invalid refund amount."}})
     }
+    if (invalidCodes[code]) {
+        return res.status(400).json({"error": {"message": invalidCodes[code]}})
+    }
+    return res.status(200).json({"transaction_id": "my_transaction_id"});
+})
+
+// VOid gift card
+app.post(`${giftcardUri}/void`, (req, res) => {
+    const body = req.body;
+    const expected_params = ["payment_id"]
+    const parametersErrors = errorsOfBodyParams(expected_params, body)
+    if(parametersErrors){
+        return res.status(400).json({"error": {"message": parametersErrors}})
+    }
+    const code = body["payment_id"]
     if (invalidCodes[code]) {
         return res.status(400).json({"error": {"message": invalidCodes[code]}})
     }
