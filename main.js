@@ -57,7 +57,7 @@ const errorsOfBodyParams = (expected_params, body_params) => {
     })
     const hasUnexpectedParams = unexpected_keys.length > 0
     const hasMissingParams = missing_keys.length > 0
-    if (!hasUnexpectedParams || !hasMissingParams){
+    if (!hasUnexpectedParams && !hasMissingParams){
         return;
     }
     const unexpected_keys_message = hasUnexpectedParams ? "Unexpected keys: " + unexpected_keys.join() : null;
