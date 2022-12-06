@@ -37,6 +37,7 @@ const invalidCodes = {
     'ACR41JB': "Unable to use ACR41JA gift card for your transaction",
     'ACR41JC': "Unable to use ACR41JA gift card for your transaction",
     'PRLJ7T2DR': "The gift card only applies to @warbyparker.com clients",
+    'PRJDASCA': "Cannot refund for more than",
     'PRJDASCV1': "Cannot void PRJDASCV1 gift card. Already voided",
     'PRJDASCV2': "Cannot void PRJDASCV2 gift card. Already captured",
     'PRJDASCV3': "Unable to use PRJDASCV3 gift card for you transaction"
