@@ -71,57 +71,59 @@ const giftcardUri = "/api/gift_card";
 // Authorize gift card
 app.post(`${giftcardUri}/authorize`, (req, res) => {
     const body = req.body;
-    const expected_params = ["gift_card_code", "amount", "sales_order_id"]
+    const expected_params = ["amount", "sales_order_id"]
     const parametersErrors = errorsOfBodyParams(expected_params, body)
     if(parametersErrors){
         return res.status(400).json({"error": {"message": parametersErrors}})
     }
-    const code = body["gift_card_code"]
+
     const amount = body["amount"]
     if( amount <= 0){
         return res.status(400).json({"error": {"message": "Invalid authorize amount."}})
     }
-    if (invalidCodes[code]) {
-        return res.status(400).json({"error": {"message": invalidCodes[code]}})
-    }
+    // TODO: we don't send giftcardcode
+    // if (invalidCodes[code]) {
+    //     return res.status(400).json({"error": {"message": invalidCodes[code]}})
+    // }
     return res.status(200).json({"transaction_id": "my_transaction_id"});
 })
 
 // Capture gift card
 app.post(`${giftcardUri}/capture`, (req, res) => {
     const body = req.body;
-    const expected_params = ["amount", "payment_id", "sales_order_id", "gift_card_code"]
+    const expected_params = ["amount", "payment_id", "sales_order_id"]
     const parametersErrors = errorsOfBodyParams(expected_params, body)
     if(parametersErrors){
         return res.status(400).json({"error": {"message": parametersErrors}})
     }
-    const code = body["gift_card_code"]
+
     const amount = body["amount"]
     if( amount <= 0){
         return res.status(400).json({"error": {"message": "Invalid capture amount."}})
     }
-    if (invalidCodes[code]) {
-        return res.status(400).json({"error": {"message": invalidCodes[code]}})
-    }
+    // TODO: we don't send giftcardcode
+    // if (invalidCodes[code]) {
+    //     return res.status(400).json({"error": {"message": invalidCodes[code]}})
+    // }
     return res.status(200).json({"transaction_id": "my_transaction_id"});
 })
 
 // Refund gift card
 app.post(`${giftcardUri}/refund`, (req, res) => {
     const body = req.body;
-    const expected_params = ["gift_card_code", "amount", "sales_order_id", "payment_id"]
+    const expected_params = ["amount", "sales_order_id", "payment_id"]
     const parametersErrors = errorsOfBodyParams(expected_params, body)
     if(parametersErrors){
         return res.status(400).json({"error": {"message": parametersErrors}})
     }
-    const code = body["gift_card_code"]
     const amount = body["amount"]
     if( amount <= 0){
         return res.status(400).json({"error": {"message": "Invalid refund amount."}})
     }
-    if (invalidCodes[code]) {
-        return res.status(400).json({"error": {"message": invalidCodes[code]}})
-    }
+    // TODO: we don't send giftcardcode
+    // if (invalidCodes[code]) {
+    //     return res.status(400).json({"error": {"message": invalidCodes[code]}})
+    // }
     return res.status(200).json({"transaction_id": "my_transaction_id"});
 })
 
@@ -134,9 +136,10 @@ app.post(`${giftcardUri}/void`, (req, res) => {
         return res.status(400).json({"error": {"message": parametersErrors}})
     }
     const code = body["payment_id"]
-    if (invalidCodes[code]) {
-        return res.status(400).json({"error": {"message": invalidCodes[code]}})
-    }
+    // TODO: we don't send giftcardcode
+    // if (invalidCodes[code]) {
+    //     return res.status(400).json({"error": {"message": invalidCodes[code]}})
+    // }
     return res.status(200).json({"transaction_id": "my_transaction_id"});
 })
 
