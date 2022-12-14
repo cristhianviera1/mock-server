@@ -71,7 +71,7 @@ const giftcardUri = "/api/gift_card";
 // Authorize gift card
 app.post(`${giftcardUri}/authorize`, (req, res) => {
     const body = req.body;
-    const expected_params = ["amount", "sales_order_id"]
+    const expected_params = ["amount", "payment_id", "sales_order_id"]
     const parametersErrors = errorsOfBodyParams(expected_params, body)
     if(parametersErrors){
         return res.status(400).json({"error": {"message": parametersErrors}})
